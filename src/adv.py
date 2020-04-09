@@ -20,12 +20,15 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+    'beach': Room("Beach", "It's a beach")
 }
 
 
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
+room['outside'].e_to = room['beach']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
