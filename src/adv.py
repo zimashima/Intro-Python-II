@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,14 +39,52 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player('Joe Exotic', room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def command(x):
+    global player
+    print(f'{player.name} is on the move...')
+
+    if (x == 'n') & (player.current_room.n_to != None):
+        player.current_room = player.current_room.n_to
+        print(f'{player.name} decided to move north...')
+    elif(x =='s') & (player.current_room.n_to != None):
+        print(f'{player.name} decided to move south...')
+        player.current_room  = player.current_room.s_to
+    elif(x =='w') & (player.current_room.n_to != None):
+        print(f'{player.name} decided to move west...')
+        player.current_room = player.current_room.w_to
+    elif(x =='e') & (player.current_room.n_to != None):
+        print(f'{player.name} decided to move east...')
+        player.current_room = player.current_room.e_to
+    elif (x not in ['n', 's', 'w', 'e']):
+        print('*******')
+        print('WRONG INPUT')
+        print('PLEASE TRY AGAIN')
+        print('*******')
+    else:
+        print('*******')
+        print('YOU SHALL NOT PASS')
+        print('*******')
+
+run = True
+
+while run == True:
+    print(f'{player.name} is now in {player.current_room.name}...')
+    print(f'{player.current_room.description}...')
+    x = input("Where would you like to go next? (n/e/w/s/q) : ")
+    if (x == 'q'):
+        run = False
+    else:
+        command(x)
