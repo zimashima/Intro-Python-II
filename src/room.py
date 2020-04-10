@@ -1,7 +1,9 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
 
-class Room:
+from gameobject import GameObject
+
+class Room(GameObject):
     def __init__(self, name, description):
         self.name = name
         self.description = description
@@ -10,7 +12,4 @@ class Room:
         self.e_to = None
         self.w_to = None
         self.storage = []
-        
-    def __str__(self):
-        return str(self.__dict__) 
     

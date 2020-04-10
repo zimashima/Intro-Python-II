@@ -1,9 +1,11 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
-class Player:
+
+from gameobject import GameObject
+
+class Player(GameObject):
     def __init__(self, name, current_room):
+        super().__init__(name)
         self.name = name
         self.current_room = current_room
         self.inventory = []
-    def __str__(self):
-        return str(self.__dict__) 
